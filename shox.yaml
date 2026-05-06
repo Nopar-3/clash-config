@@ -1,0 +1,50 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+ipv6: false
+
+external-controller: 0.0.0.0:9090
+secret: "shox123"
+external-ui: ui
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+
+proxies:
+  - name: "Shox极速节点"
+    type: vless
+    server: 45.77.40.105
+    port: 443
+    uuid: 76cf8f92-e4c1-49fb-b1ab-18c3f3ba5bec
+    network: tcp
+    udp: true
+    tls: true
+    flow: ""
+    servername: www.cloudflare.com
+    client-fingerprint: chrome
+
+    reality-opts:
+      public-key: R0Ect8AkLp9Z0ZDPziZDB5ZxQyDelFnDzvINjQ1B4GA
+      short-id: 4f28baedea5f
+      spider-x: "/"
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - "Shox极速节点"
+      - "DIRECT"
+      - "REJECT"
+
+rules:
+  - MATCH,Proxy
